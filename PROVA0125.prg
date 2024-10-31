@@ -1,8 +1,8 @@
 //Nome: Bruno Rafael de Resende
 
-SetDate to british
-SetCentury on 
-Set Epoch to 1940
+set Date to british
+set century on
+set epoch to 1924
 
 
 
@@ -16,7 +16,7 @@ cNome          := Space(20)
 cCurso         := Space(20)
 dNascimento    := CToD('')
 nSerie         := 0
-dMensalidade   := 0
+nMensalidade   := 0
 dBimestre      := 0
 nMedia1        := ('99.9')
 nMedia2        := ('99.9')
@@ -186,7 +186,7 @@ nFalta2D  := (nFalta1b2D + nFalta2b2D + nFalta3b2D + nFalta4b2D)
 nFalta3D  := (nFalta1b3D + nFalta2b3D + nFalta3b3D + nFalta4b3D)
 nFaltaFinal  := (nFalta1D + nFalta2D + nFalta3D) / 2
 
-@ 28,01 say 'Disciplina 2 aluno esta:'
+@ 28,01 say 'Disciplina 1 aluno esta:'
 
 if nMedia1D > 6
       @ 28,25 say 'Aprovado'  color 'g/n'
@@ -194,7 +194,7 @@ elseif nMedia1D >= 5 .and. nSerie < 4
       @ 28,25 say 'Aluno em recuperacao' color 'gr/n'
 else
       @ 28,25 say 'reprovado e Dp na materia' color 'r/n'
-      nDpConta := nDpConta + 1
+      nDpConta++
       cAcumulaDp += cDisciplina1 + ','
 endif
 
@@ -206,7 +206,7 @@ elseif nMedia2D >= 5 .and. nSerie < 4
       @ 29,25 say 'Aluno em recuperacao' color 'gr/n'   
 else
       @ 29,25 say 'reprovado e Dp na materia' color 'r/n'
-      nDpConta := nDpConta + 1
+      nDpConta ++
       cAcumulaDp += cDisciplina2 + ','
 endif
 
@@ -218,7 +218,7 @@ elseif nMedia3D >= 5 .and. nSerie < 4
       @ 30,25 say 'Aluno em recuperacao' color 'gr/n'
 else
       @ 30,25 say 'reprovado e Dp na materia' color 'r/n'
-      nDpConta := nDpConta + 1
+      nDpConta ++
       cAcumulaDp += cDisciplina3 + ','
 endif
 
@@ -264,11 +264,11 @@ else
 
 endif
 
-@ 36,01 say 'Se o Aluno Ficar em Dp' + cAcumulaDp + '.'
+@ 36,01 say 'Disciplina em Dp ' + cAcumulaDp + 'sera ajustado a mensalidade do proximo ano.'
 
-dMensalidade := dMensalidade + (dMensalidade*cAcumulaDp*0.2)
+nMensalidade := nMensalidade + (nMensalidade*nDpConta*0.2)
 
-@ 37,01 say 'Caso houver Dp o valor a ser pago ' + (dMensalidade,'@E 999.99')
+@ 37,01 say 'Caso houver Dp o valor a ser pago ' + (dMensalNovo,'@E 999.99')
 
 inkey(0)
 clear
